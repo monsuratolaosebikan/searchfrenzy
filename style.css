@@ -24,7 +24,7 @@ h1 {
     border: none;
 }
 
-.selected {
+.btn:focus {
      background: #3498db;
 }
 
