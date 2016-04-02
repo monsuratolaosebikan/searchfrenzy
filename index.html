@@ -11,7 +11,7 @@
         <div class="puzzle">
         <div ng-repeat="row in puzzle track by $index">
             
-            <button ng-class="selected" class="btn" ng-repeat="letter in row track by $index">{{letter}}</button>
+            <button class="btn" ng-repeat="letter in row track by $index" ng-click="add($parent.$index, $index,letter)">{{letter}}</button>
         </div>
         <ul>
             <li ng-repeat="word in words">{{word}}</li>
