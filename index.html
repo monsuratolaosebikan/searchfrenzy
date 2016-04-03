@@ -8,20 +8,16 @@
     </head>
     <body ng-app="myApp" ng-controller="puzzleCtrl">
         <h1>Search Frenzy</h1>
-        <div class="puzzle">
-        <div ng-repeat="row in puzzle track by $index">
-            
-            <button class="btn" ng-repeat="letter in row track by $index" ng-click="add($parent.$index, $index,letter)">{{letter}}</button>
-        </div>
-        <ul>
-            <li ng-repeat="word in words">{{word}}</li>
-        </ul>
-        </div>
+        <h3>Found:</h3>
+        <div id='puzzle'></div>
+        <div id='words'></div>
+
         
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         <script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
         <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
         <script src="wordfind.js"></script> 
+        <script src="wordfindgame.js"></script> 
         <script src="app.js"></script>
     </body>
 </html>
