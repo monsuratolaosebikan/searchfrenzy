@@ -29,12 +29,12 @@ function RandWordList(callback){
             RandomWord();
     }
     
-var app;
 
 'use strict'
 
 
-    app = angular.module('myApp', [])
+
+    var app = angular.module('myApp', [])
     .controller('puzzleCtrl', function($scope) {
         RandWordList(function(WordArray){
             $scope.words = WordArray;
@@ -51,5 +51,6 @@ var app;
 
 
    });
+
 
 
