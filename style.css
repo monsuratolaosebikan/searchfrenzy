@@ -13,7 +13,6 @@ body {
     font-family: martel sans;
     font-style: oblique;
     font-size: 38 pt;
-    
 }
 
 .btn {
@@ -84,7 +83,7 @@ button::-moz-focus-inner {
 }
 
 #puzzle .solved {
-  background-color: purple;
+  background-color: deepskyblue;
   color: white;
 }
 
