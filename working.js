@@ -1,9 +1,21 @@
 'use strict'
 
-function RandWordList(callback){    
+var app = angular.module('myApp', [])
+
+
+.controller('puzzleCtrl', function($scope) {
+    
+    $scope.words = ['hello', 'northeastern', 'javascript', 'hackathon', 'bugs'];
+    var puzzle = wordfind.newPuzzle($scope.words);
+    $scope.puzzle = puzzle;
+    wordfind.print(puzzle);
+    console.log(puzzle);
+
+    function RandWordList(){    
         var count = 5; // number of rows to be found
-        var maxLength = 20; // word length
+        var maxLength = 7; // word length
         var WordArray=[]; // stores list of words
+
 
         function RandomWord(data) {
             var requestStr = "http://randomword.setgetgo.com/get.php";
@@ -16,27 +28,18 @@ function RandWordList(callback){
                     if (count>0){
                         RandomWord();
                     } else {
-                        console.log(WordArray);
-                        callback(WordArray);
-                        //temp=WordArray;
+                        console.log(WordArray);  
                     }
-                    
                 }
-            
             $.get(
                 requestStr
             ).done(RandomWordComplete);
         }
             RandomWord();
-}
+    }
+    
+    RandWordList();
 
-var app = angular.module('myApp', [])
-    .controller('puzzleCtrl', function($scope) {
-        RandWordList(function(WordArray){
-            $scope.words = WordArray;
-            //$scope.words = ["WordArray","cow","test"];
-            console.log($scope.words);
-            $scope.$apply();
-            var gamePuzzle = wordfindgame.create($scope.words, '#puzzle', '#words');
     });
-});
+
+
