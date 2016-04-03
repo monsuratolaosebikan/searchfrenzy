@@ -229,7 +229,13 @@
 
         if (wordList.length === 0) {
           $('.puzzleSquare').addClass('complete');
+            alert('You Won!');
+            ref.set(null);
+            window.location.reload(true);
         }
+          else{
+              console.log(wordList.length);
+          }
       }
 
       // reset the turn

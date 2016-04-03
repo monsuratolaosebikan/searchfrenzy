@@ -2,7 +2,7 @@
 
 function RandWordList(callback){    
         var count = 5; // number of rows to be found
-        var maxLength = 20; // word length
+        var maxLength = 12; // word length
         var WordArray=[]; // stores list of words
 
         function RandomWord(data) {
@@ -36,6 +36,19 @@ var app = angular.module('myApp', ['firebase'])
         var ref = new Firebase("http://wordfrenzy.firebaseio.com");
         var wordref = ref.child('wordList');
         var found =[];
+        
+         $scope.newGame = function () {
+            ref.set(null);
+             RandWordList(function(WordArray){
+                    $scope.words = WordArray;
+                    var gamePuzzle = wordfindgame.create($scope.words, '#puzzle', '#words');
+                    ref.child('found').on("child_added", function(snapshot, prevChildKey) {
+                        found[0] = snapshot.val();
+                        console.log(found);
+                        wordfindgame.solve(gamePuzzle, found);
+                    });
+                });
+        }
         
         ref.once('value', function(snapshot){
             gameStarted = snapshot.hasChild('game');
