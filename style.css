@@ -7,12 +7,46 @@ p {
   margin: 20px 20px 0px 20px;
 }
 
+body {
+    color: black;
+    background-color: white;
+    font-family: martel sans;
+    font-style: oblique;
+    font-size: 38 pt;
+    
+}
+
+.btn {
+    background: #c0c1c2;
+    background-image: -webkit-linear-gradient(top, #c0c1c2, #c0c1c2);
+    background-image: -moz-linear-gradient(top, #c0c1c2, #c0c1c2);
+    background-image: -ms-linear-gradient(top, #c0c1c2, #c0c1c2);
+    background-image: -o-linear-gradient(top, #c0c1c2, #c0c1c2);
+    background-image: linear-gradient(to bottom, #c0c1c2, #c0c1c2);
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    ;
+    text-align: center;
+    display: inline-block;
+    border: none;
+    margin: 5px;
+}
+
 /**
 * Styles for the puzzle
 */
+
+#gameboard {
+    width:800px;
+    margin: 0 auto;
+}
+
 #puzzle {
-  border: 1px solid black;
-  padding: 20px;
+  border: solid 2px black;
+  padding: 20px; 
   float: left;
   margin: 30px 20px;
 }
@@ -30,20 +64,22 @@ p {
   background-color: white;
   border: 0;
   font: 1em sans-serif;
+  color: black;
 }
 
 button::-moz-focus-inner {
   border: 0;
+    
 }
 
 /* indicates when a square has been selected */
 #puzzle .selected {
-  background-color: orange;
+  background-color: dodgerblue;
 }
 
 /* indicates that the square is part of a word that has been found */ 
 #puzzle .found {
-  background-color: blue;
+  background-color: deepskyblue;
   color: white;
 }
 
@@ -61,7 +97,7 @@ button::-moz-focus-inner {
 * Styles for the word list
 */
 #words {
-  padding-top: 20px;
+  padding: 0px;
   -moz-column-count: 2;
   -moz-column-gap: 20px;
   -webkit-column-count: 2;
@@ -83,7 +119,7 @@ button::-moz-focus-inner {
 /* indicates that the word has been found */
 #words .wordFound {
   text-decoration: line-through;
-  color: gray;
+  color: deepskyblue;
 }
 
 /**
