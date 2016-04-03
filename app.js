@@ -30,13 +30,35 @@ function RandWordList(callback){
             RandomWord();
 }
 
-var app = angular.module('myApp', [])
+var app = angular.module('myApp', ['firebase'])
     .controller('puzzleCtrl', function($scope) {
-        RandWordList(function(WordArray){
-            $scope.words = WordArray;
-            //$scope.words = ["WordArray","cow","test"];
-            console.log($scope.words);
-            $scope.$apply();
-            var gamePuzzle = wordfindgame.create($scope.words, '#puzzle', '#words');
-    });
+        var gameStarted = "false";
+        var ref = new Firebase("http://wordfrenzy.firebaseio.com");
+        var wordref = ref.child('wordList');
+        var found =[];
+        
+        ref.once('value', function(snapshot){
+            gameStarted = snapshot.hasChild('game');
+            if(gameStarted) {
+                var cwords = snapshot.val().wordList;
+                var game = snapshot.val().game;
+                wordfindgame.join(cwords,'#puzzle','#words', game);
+                ref.child('found').on("child_added", function(snapshot, prevChildKey) {
+                    found[0] = snapshot.val();
+                    console.log(found);
+                    wordfindgame.solve(game, found);
+                });
+            }
+            else {
+                RandWordList(function(WordArray){
+                    $scope.words = WordArray;
+                    var gamePuzzle = wordfindgame.create($scope.words, '#puzzle', '#words');
+                    ref.child('found').on("child_added", function(snapshot, prevChildKey) {
+                        found[0] = snapshot.val();
+                        console.log(found);
+                        wordfindgame.solve(gamePuzzle, found);
+                    });
+                });
+            }
+        })     
 });
